@@ -7,19 +7,30 @@ export class ImageDisplay extends Component {
         this.state ={
             error: null,
             isLoaded:false,
-            items:[]
+            searchEntry:null,
+            previewURLS: [],
+            pageNum:2
         }
     }
 
-    componentDidMount(){
-        fetch("https://pixabay.com/api/?key=14272018-277a44d4d1ae6e42f42ed7772&q=yellow+flowers&image_type=photo")
+    getPhotos =()=>{
+        const api = `https://pixabay.com/api/?key=14272018-277a44d4d1ae6e42f42ed7772&q=yellow+flowers&image_type=photo&per_page=50&min_height=300&page=${this.state.pageNum}`
+        fetch(api)
         .then(res => res.json())
         .then(
             (result) => {
                 this.setState({
                     isLoaded:true,
                 });
-                console.log(result)
+                console.log(result);
+                let previewURLS =[]
+                for (let i =0; i <result.hits.length; i++){
+                    previewURLS.push(result.hits[i].previewURL)
+                }
+                //console.log(previewURLS)
+                this.setState({previewURLS});
+                console.log(this.state)
+                
             },
             (error) =>{
                 this.setState({
@@ -29,11 +40,21 @@ export class ImageDisplay extends Component {
             }
         )
     }
-    render() {
 
+    componentDidMount(){
+        this.getPhotos()
+    }
+
+
+
+    render() {
+        let renderedOutput = this.state.previewURLS.map(item => <div className="img-sm">
+            <img src={item}></img>
+            </div>)
 
         return (
-            <div>
+            <div className= "img-container">
+                {renderedOutput}
                 
             </div>
         )

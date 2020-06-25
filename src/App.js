@@ -5,7 +5,7 @@ import ImageDisplay from './components/ImageDisplay';
 export class App extends Component {
   render() {
     return (
-      <div className="image-container">
+      <div className="container-lg">
         <ImageDisplay/>
       </div>
     )
