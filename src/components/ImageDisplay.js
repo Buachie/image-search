@@ -14,7 +14,7 @@ export class ImageDisplay extends Component {
     }
 
     getPhotos =()=>{
-        const api = `https://pixabay.com/api/?key=14272018-277a44d4d1ae6e42f42ed7772&q=yellow+flowers&image_type=photo&per_page=50&min_height=300&page=${this.state.pageNum}`
+        const api = `https://pixabay.com/api/?key=14272018-277a44d4d1ae6e42f42ed7772&q=yellow+flowers&image_type=photo&per_page=50&orientation=horizontal&page=${this.state.pageNum}`
         fetch(api)
         .then(res => res.json())
         .then(
@@ -25,7 +25,7 @@ export class ImageDisplay extends Component {
                 console.log(result);
                 let previewURLS =[]
                 for (let i =0; i <result.hits.length; i++){
-                    previewURLS.push(result.hits[i].previewURL)
+                    previewURLS.push(result.hits[i].webformatURL.replace(/_640/g,'_180'))
                 }
                 //console.log(previewURLS)
                 this.setState({previewURLS});

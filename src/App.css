@@ -13,12 +13,29 @@ body{
 }
 
 .container-lg{
-  max-width: 1824px;
   margin: 0 auto;
+  position: relative;
+  width: 90%;
+  overflow: hidden;
 }
 .img-container{
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  position: relative;
+  width: calc(100% + 30px);
 }
 
+.img-sm{
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  min-height: 180px;
+  line-height: 0;
+  text-align: center;
+  /*border: 1px solid #000;*/
+}
+
+.img-sm img{
+  width: 100%;
+}
