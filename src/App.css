@@ -39,3 +39,30 @@ body{
 .img-sm img{
   width: 100%;
 }
+
+/*Search Bar*/
+.search-container{
+  width: 100%;
+  background-color: aqua;
+  padding: 2em;
+  margin-bottom: 2em;
+}
+
+.search-bar{
+  width: 50%;
+  height: 2rem;
+  border-radius: 30px;
+  border:none;
+  padding: 5px;
+}
+
+input:focus{
+  outline: none;
+}
+
+.search-submit{
+  border-radius: 30px;
+  height: 2rem;
+  border: none;
+  margin-left: 1rem;
+}
