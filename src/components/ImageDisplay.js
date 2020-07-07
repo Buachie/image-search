@@ -9,7 +9,8 @@ export class ImageDisplay extends Component {
                 isLoaded:false,
                 searchEntry:"",
                 previewURLS: [],
-                pageNum:2,
+                pageNum:[],
+                currentPage: null
                 
             }
             this.handleChange = this.handleChange.bind(this);
@@ -19,7 +20,7 @@ export class ImageDisplay extends Component {
 
 
     getPhotos =()=>{
-        const api = `https://pixabay.com/api/?key=14272018-277a44d4d1ae6e42f42ed7772&q=${this.state.searchEntry}&image_type=photo&per_page=50&orientation=vertical&page=${this.state.pageNum}`
+        const api = `https://pixabay.com/api/?key=14272018-277a44d4d1ae6e42f42ed7772&q=${this.state.searchEntry}&image_type=all&per_page=50&orientation=all&page=${this.state.currentPage}&safesearch=true`
         fetch(api)
         .then(res => res.json())
         .then(
@@ -27,16 +28,21 @@ export class ImageDisplay extends Component {
                 this.setState({
                     isLoaded:true,
                 });
-                this.setState({searchEntry:this.props.search})
-                console.log(this.props.search)
-                console.log(result);
+                //console.log(result);
+                console.log(api)
                 let previewURLS =[]
+                let pageNum = []
                 for (let i =0; i <result.hits.length; i++){
                     previewURLS.push(result.hits[i].webformatURL.replace(/_640/g,'_180'))
                 }
                 //console.log(previewURLS)
                 this.setState({previewURLS});
-                console.log(this.state)
+                //console.log(this.state)
+                for(let x =1; x <= (result.totalHits/result.hits.length); x++){
+                    pageNum.push(x)
+                }
+                this.setState({pageNum})
+                console.log(pageNum)
                 
             },
             (error) =>{
@@ -54,21 +60,28 @@ export class ImageDisplay extends Component {
 
     handleChange(event){
         this.setState({searchEntry:event.target.value.replace(/ /g, "+")})
-      }
+    }
     
-      handleSubmit(event){
-        //alert(this.state.searchEntry.replace(/ /g, "+"));
-        event.preventDefault();
+    handleSubmit(event){
+        
         this.setState(this.state)
         this.getPhotos()
-      }
-
+        event.preventDefault();
+    }
+    /*
+    changePage(){
+        this.setState({currentPage:{num}})
+    }
+    */
 
 
     render() {
         let renderedOutput = this.state.previewURLS.map(item => <div className="img-sm">
             <img src={item}></img>
             </div>)
+        let pageNumbers = this.state.pageNum.map(item => <div className="page-num">
+            <button >{item}</button>
+        </div>)
 
         return (
             <div className="main">
@@ -83,6 +96,9 @@ export class ImageDisplay extends Component {
                 {renderedOutput}
                 
             </div>
+            </div>
+            <div className="page-num-container">
+            {pageNumbers}
             </div>
             </div>
         )

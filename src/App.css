@@ -66,3 +66,13 @@ input:focus{
   border: none;
   margin-left: 1rem;
 }
+
+/*Page Numbers*/
+.page-num-container{
+  width: max-content;
+  margin: 0 auto;
+}
+.page-num{
+  display: inline;
+  padding: 1rem;
+}
