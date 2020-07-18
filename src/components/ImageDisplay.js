@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import Gallery from "react-photo-gallery";
 export class ImageDisplay extends Component {
 
         constructor(props){
@@ -20,7 +20,7 @@ export class ImageDisplay extends Component {
 
 
     getPhotos =()=>{
-        const api = `https://pixabay.com/api/?key=14272018-277a44d4d1ae6e42f42ed7772&q=${this.state.searchEntry}&image_type=all&per_page=50&orientation=all&page=${this.state.currentPage}&safesearch=true`
+        const api = `https://pixabay.com/api/?key=14272018-277a44d4d1ae6e42f42ed7772&q=${this.state.searchEntry}&image_type=all&per_page=50&orientation=all&page=1&safesearch=true`
         fetch(api)
         .then(res => res.json())
         .then(
@@ -33,9 +33,10 @@ export class ImageDisplay extends Component {
                 let previewURLS =[]
                 let pageNum = []
                 for (let i =0; i <result.hits.length; i++){
-                    previewURLS.push(result.hits[i].webformatURL.replace(/_640/g,'_180'))
+                    previewURLS.push({src:result.hits[i].webformatURL.replace(/_640/g,'_180'), 
+                })
                 }
-                //console.log(previewURLS)
+                console.log(previewURLS)
                 this.setState({previewURLS});
                 //console.log(this.state)
                 for(let x =1; x <= (result.totalHits/result.hits.length); x++){
@@ -60,6 +61,7 @@ export class ImageDisplay extends Component {
 
     handleChange(event){
         this.setState({searchEntry:event.target.value.replace(/ /g, "+")})
+        this.getPhotos()
     }
     
     handleSubmit(event){
@@ -80,7 +82,7 @@ export class ImageDisplay extends Component {
             <img src={item}></img>
             </div>)
         let pageNumbers = this.state.pageNum.map(item => <div className="page-num">
-            <button >{item}</button>
+            <button value={item}>{item}</button>
         </div>)
 
         return (
@@ -93,7 +95,7 @@ export class ImageDisplay extends Component {
             </div>
             <div className= "container-lg">
             <div className= "img-container">
-                {renderedOutput}
+                <Gallery photos = {this.state.previewURLS} direction = {"row"}/>
                 
             </div>
             </div>
