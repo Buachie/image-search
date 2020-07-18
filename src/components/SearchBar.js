@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import ImageDisplay from './ImageDisplay'
 export class SearchBar extends Component {
 
         state ={
@@ -28,9 +28,15 @@ export class SearchBar extends Component {
     render() {
         console.log(this.state.images)
         return (
+            <div>
             <div className="search-container">
                 <input type= "search" name="searchEntry" className="search-bar" value= {this.state.searchEntry} onChange={this.handleChange}></input>
             </div>
+            <br/>
+            {this.state.images.length > 0? (<ImageDisplay images={this.state.images}/>) : null}
+            </div>
+            
+
         )
     }
 }
