@@ -13,23 +13,33 @@ export class SearchBar extends Component {
 
     handleChange =(e) =>{
         this.setState({[e.target.name]:e.target.value}, ()=>{
-            let api =`${this.state.apiUrl}/?key=${this.state.apiKey}&image_type=photo&per_page=50&safesearch=true`
+            let api =`${this.state.apiUrl}/?key=${this.state.apiKey}&q=${this.state.searchEntry}&image_type=photo&per_page=70&safesearch=true`
             fetch(api)
             .then(res=> res.json())
             .then(
                 (result) => {
+                    for (let i = 0; i < result.hits.length; i++) {
+                        
+                        if(result.hits[i].imageWidth > (result.hits[i].imageHeight * 1.5)){
+                            result.hits[i]= Object.assign({'cols' : 2, },result.hits[i])
+                            console.log(result.hits[i])
+                        }
+                        
+                    }
                     this.setState({images:result.hits})
+                    console.log(this.state)
                 }
             )
         })
-
+        
     }
 
     render() {
-        console.log(this.state.images)
+        //console.log(this.state.images)
         return (
             <div>
             <div className="search-container">
+                <h1 className="txt-wht">Pixabay Image Search</h1>
                 <input type= "search" name="searchEntry" className="search-bar" value= {this.state.searchEntry} onChange={this.handleChange}></input>
             </div>
             <br/>

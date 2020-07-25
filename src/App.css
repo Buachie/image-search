@@ -12,40 +12,34 @@ body{
   padding: 0;
 }
 
+.txt-wht{
+  color: #fff;
+}
 .container-lg{
   margin: 0 auto;
-  position: relative;
-  width: 90%;
-  overflow: hidden;
+  width: 70%;
+  
 }
+
 /*
-.img-container{
-  margin: 0 auto;
+.flex{
   display: flex;
+  flex: 1 1 360px;
   flex-wrap: wrap;
-  position: relative;
-  width: calc(100% + 30px);
+  justify-content: space-around;
+  flex-grow: 1;
+  flex-basis: 1;
 }
 */
 
-.img-sm{
-  display: inline-block;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  min-height: 180px;
-  line-height: 0;
-  text-align: center;
-  /*border: 1px solid #000;*/
-}
-
-.img-sm img{
+.img-src{
   width: 100%;
 }
 
 /*Search Bar*/
 .search-container{
   width: 100%;
-  background-color: aqua;
+  background-color: rgb(66, 58, 107);
   padding: 2em;
   margin-bottom: 2em;
 }
