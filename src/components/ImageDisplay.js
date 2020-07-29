@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import Gallery from "react-photo-gallery";
 import {GridList, GridTile} from 'material-ui/GridList';
-import iconButton from 'material-ui/IconButton'
 import ZoomIn from 'material-ui/svg-icons/action/zoom-in'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'

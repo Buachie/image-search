@@ -18,6 +18,7 @@ export class SearchBar extends Component {
             .then(res=> res.json())
             .then(
                 (result) => {
+                    //Checks the image width in relation to the height and adjusts the number of columns in Image Display component
                     for (let i = 0; i < result.hits.length; i++) {
                         
                         if(result.hits[i].imageWidth > (result.hits[i].imageHeight * 1.5)){
@@ -35,7 +36,6 @@ export class SearchBar extends Component {
     }
 
     render() {
-        //console.log(this.state.images)
         return (
             <div>
             <div className="search-container">

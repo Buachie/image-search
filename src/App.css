@@ -21,17 +21,6 @@ body{
   
 }
 
-/*
-.flex{
-  display: flex;
-  flex: 1 1 360px;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  flex-grow: 1;
-  flex-basis: 1;
-}
-*/
-
 .img-src{
   width: 100%;
 }
@@ -61,14 +50,4 @@ input:focus{
   height: 2rem;
   border: none;
   margin-left: 1rem;
-}
-
-/*Page Numbers*/
-.page-num-container{
-  width: max-content;
-  margin: 0 auto;
-}
-.page-num{
-  display: inline;
-  padding: 1rem;
 }
