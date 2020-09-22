@@ -24,7 +24,7 @@ export class ImageDisplay extends Component {
 
         if(images){
             imageListContent =(
-                <GridList cols={5} className="flex">
+                <GridList  cols={window.screen.width < 900? 2: window.screen.width < 400? 1: 5} className="flex">
                     {images.map(img =>(
                         <GridTile title={img.tags} 
                         key={img.id} 

@@ -23,12 +23,12 @@ export class SearchBar extends Component {
                         
                         if(result.hits[i].imageWidth > (result.hits[i].imageHeight * 1.5)){
                             result.hits[i]= Object.assign({'cols' : 2, },result.hits[i])
-                            console.log(result.hits[i])
+                            //console.log(result.hits[i])
                         }
                         
                     }
                     this.setState({images:result.hits})
-                    console.log(this.state)
+                    //console.log(this.state)
                 }
             )
         })
@@ -39,7 +39,7 @@ export class SearchBar extends Component {
         return (
             <div>
             <div className="search-container">
-                <h1 className="txt-wht">Pixabay Image Search</h1>
+                <h1 className="txt-wht">React Image Search</h1>
                 <input type= "search" name="searchEntry" className="search-bar" value= {this.state.searchEntry} onChange={this.handleChange}></input>
             </div>
             <br/>
